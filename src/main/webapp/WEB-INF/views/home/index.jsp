@@ -37,7 +37,7 @@
 				<li class="span3">
 				  <div class="thumbnail">
 				  <i class="tag"></i>
-					<a href="product_details.html"><img src="themes/images/products/b3.jpg" alt=""></a>
+					<a href="product_details.html"><img src="${pageContext.request.contextPath }/resources/user/themes/images/products/b3.jpg" alt=""></a>
 					<div class="caption">
 					  <h5>Product name</h5>
 					   <h4><a class="btn" href="product_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
