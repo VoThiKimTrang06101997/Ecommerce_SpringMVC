@@ -8,12 +8,33 @@
 		<put-attribute name="content" value=""></put-attribute>
 	</definition>
 
-	<!-- Home page of User -->
-	<definition name="admin.dashboard.index" extends="template_admin">
+	<definition name="template_empty"
+		template="/WEB-INF/views/templates/template_empty.jsp">
+		<put-attribute name="title" value=""></put-attribute>
+		<put-attribute name="content" value=""></put-attribute>
+	</definition>
+
+	<!-- Home page of Admin -->
+	<definition name="admin.dashboard.index"
+		extends="template_admin">
 		<put-attribute name="content"
 			value="/WEB-INF/views/admin/dashboard/index.jsp"></put-attribute>
 	</definition>
 
+	<!-- Login of Admin -->
+	<definition name="admin.login.index"
+		extends="template_empty">
+		<put-attribute name="content"
+			value="/WEB-INF/views/admin/login/index.jsp"></put-attribute>
+	</definition>
 	
+	<definition name="admin.login.accessDenied"
+		extends="template_empty">
+		<put-attribute name="content"
+			value="/WEB-INF/views/admin/login/accessDenied.jsp"></put-attribute>
+	</definition>
+		
+
+
 
 </tiles-definitions>
