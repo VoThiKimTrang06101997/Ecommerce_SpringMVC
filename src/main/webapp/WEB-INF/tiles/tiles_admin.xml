@@ -34,7 +34,11 @@
 			value="/WEB-INF/views/admin/login/accessDenied.jsp"></put-attribute>
 	</definition>
 		
-
-
+	<!-- Profile of Admin -->
+	<definition name="admin.account.profile"
+		extends="template_admin">
+		<put-attribute name="content"
+			value="/WEB-INF/views/admin/account/profile.jsp"></put-attribute>
+	</definition>
 
 </tiles-definitions>

@@ -46,7 +46,7 @@
 <div class="wrapper">
   <header class="main-header">
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="${ pageContext.request.contextPath}/admin/dashboard" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
@@ -292,7 +292,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="${ pageContext.request.contextPath}/admin/account/profile" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
                   <a href="${ pageContext.request.contextPath}/admin/process-logout" class="btn btn-default btn-flat">Sign out</a>
@@ -509,12 +509,14 @@
     <!-- /.sidebar -->
   </aside>
 
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
    		<tiles:insertAttribute name="content"></tiles:insertAttribute>
   <!-- /.content-wrapper -->
   </div>
+  
   
   
   <footer class="main-footer">
