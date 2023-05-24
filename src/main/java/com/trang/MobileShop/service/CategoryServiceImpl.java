@@ -53,4 +53,9 @@ public class CategoryServiceImpl implements CategoryService {
 		return Collections.emptyList();
 	}
 
+	@Override
+	public List<Category> findParentCategoriesWithStatus(boolean status) {
+		return categoryRepository.findParentCategoriesWithStatus(status);
+	}
+
 }

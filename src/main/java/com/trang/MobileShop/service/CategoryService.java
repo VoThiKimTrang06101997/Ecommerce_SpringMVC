@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.trang.MobileShop.model.Category;
 
+import org.springframework.data.repository.query.Param;
+
 public interface CategoryService {
 	public Iterable<Category> findAll();
 
@@ -16,4 +18,6 @@ public interface CategoryService {
 	public Category findById(int categoryId);
 
 	public List<Category> getSubcategories(int categoryId);
+
+	public List<Category> findParentCategoriesWithStatus(@Param("status") boolean status);
 }

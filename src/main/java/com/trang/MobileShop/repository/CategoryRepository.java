@@ -22,4 +22,7 @@ public interface CategoryRepository extends JpaRepository<Category, Integer>, Cr
 	@Query("SELECT c FROM Category c WHERE c.parent = :parent")
 	List<Category> findByParent(@Param("parent") Category parent);
 
+	@Query("FROM Category WHERE parent_id = null and status = :status")
+	public List<Category> findParentCategoriesWithStatus(@Param("status") boolean status);
+
 }
