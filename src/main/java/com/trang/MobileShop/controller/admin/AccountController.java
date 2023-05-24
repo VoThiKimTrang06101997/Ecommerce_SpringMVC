@@ -47,5 +47,4 @@ public class AccountController {
 		return "redirect:/admin/account/profile";
 
 	}
-
 }
