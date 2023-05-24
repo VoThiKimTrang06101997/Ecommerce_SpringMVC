@@ -44,7 +44,7 @@ List<Category> categories = (List<Category>) request.getAttribute("categories");
 <body class="hold-transition skin-blue sidebar-mini">
 	<section class="content-header">
 		<h1 style="color: red">
-			Sub Categories <small>List ${category.name } </small>
+			Sub Categories <small>List ${category.category.name } </small>
 		</h1>
 
 		<ol class="breadcrumb">
@@ -80,9 +80,9 @@ List<Category> categories = (List<Category>) request.getAttribute("categories");
 										<td>${subcategory.name}</td>
 										<td>${subcategory.status ? 'Show' : 'Hide'}</td>
 										<td><a
-											href="${pageContext.request.contextPath}/admin/category/edit/${subcategory.categoryId}">Edit</a>
+											href="${pageContext.request.contextPath}/admin/category/editsubcategories/${subcategory.categoryId}">Edit</a>
 											| <a
-											href="${pageContext.request.contextPath}/admin/category/delete/${subcategory.categoryId}"
+											href="${pageContext.request.contextPath}/admin/category/deletesubcategories/${subcategory.categoryId}"
 											onclick="return confirm('Are you sure to delete?')">Delete</a>
 										</td>
 									</tr>

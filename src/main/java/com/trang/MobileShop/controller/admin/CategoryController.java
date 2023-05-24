@@ -100,4 +100,41 @@ public class CategoryController {
 		return "redirect:/admin/category/subcategories/" + parentCategory.getCategoryId();
 	}
 
+	@RequestMapping(value = "deletesubcategories/{categoryId}", method = RequestMethod.GET)
+	public String deleteSubcategories(@PathVariable("categoryId") int categoryId,
+			RedirectAttributes redirectAttributes) {
+		Category category = categoryService.findById(categoryId);
+		Category parentCategory = category.getParent();
+
+		try {
+			categoryService.delete(categoryId);
+		} catch (Exception e) {
+			redirectAttributes.addFlashAttribute("error", "Deletion Failed!");
+		}
+
+		return "redirect:/admin/category/subcategories/" + parentCategory.getCategoryId();
+	}
+
+	@RequestMapping(value = "editsubcategories/{categoryId}", method = RequestMethod.GET)
+	public String editSubcategories(@PathVariable("categoryId") int categoryId, Model model) {
+		Category category = categoryService.findById(categoryId);
+		List<Category> subcategories = categoryService.getSubcategories(category.getParent().getCategoryId());
+
+		model.addAttribute("category", category);
+		model.addAttribute("subcategories", subcategories);
+
+		return "admin.category.editsubcategories";
+	}
+
+	@RequestMapping(value = "editsubcategories", method = RequestMethod.POST)
+	public String saveEditedSubcategories(@ModelAttribute("category") Category category,
+			@RequestParam("parentCategoryId") int parentCategoryId) {
+		Category parentCategory = categoryService.findById(parentCategoryId);
+		category.setParent(parentCategory);
+
+		categoryService.save(category);
+
+		return "redirect:/admin/category/subcategories/" + parentCategory.getCategoryId();
+	}
+
 }
