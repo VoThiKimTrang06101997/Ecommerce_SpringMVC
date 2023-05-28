@@ -1,5 +1,7 @@
 package com.trang.MobileShop.service;
 
+import java.util.List;
+
 import com.trang.MobileShop.model.Product;
 import com.trang.MobileShop.repository.ProductRepository;
 
@@ -32,6 +34,16 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public Product edit(int productId) {
 		return productRepository.findById(productId).get();
+	}
+
+	@Override
+	public List<Product> latestProducts(boolean status, int n) {
+		return productRepository.latestProduct(status, n);
+	}
+
+	@Override
+	public List<Product> featuredProducts(boolean status, boolean featured, int n) {
+		return productRepository.featuredProduct(status, featured, n);
 	}
 
 }

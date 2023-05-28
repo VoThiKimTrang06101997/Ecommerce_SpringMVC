@@ -12,4 +12,10 @@
 		<body-content>empty</body-content>
 	</tag>
 
+	<tag>
+		<name>latestProducts</name>
+		<tag-class>com.trang.MobileShop.tags.LatestProductTag</tag-class>
+		<body-content>empty</body-content>
+	</tag>
+
 </taglib>
