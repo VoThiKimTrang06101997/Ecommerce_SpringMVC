@@ -1,7 +1,9 @@
 package com.trang.MobileShop.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -53,11 +55,18 @@ public class Category {
 		return subcategories;
 	}
 
-	
-//	@Override
-//	public String toString() {
-//		return "Category [categoryId=" + categoryId + ", name=" + name + ", status=" + status + ", parent=" + parent
-//				+ ", subcategories=" + subcategories + "]";
-//	}
+	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Set<Product> products = new HashSet<>();
+
+	public Set<Product> getProducts() {
+		return products;
+	}
+
+	public String getIndentedName() {
+		if (parent != null) {
+			return "&nbsp;&nbsp;&nbsp;&nbsp;" + name;
+		}
+		return name;
+	}
 
 }

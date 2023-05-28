@@ -7,7 +7,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Admin Mobile Shop | Category</title>
+<title>Admin Mobile Shop | Photo</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
@@ -39,11 +39,13 @@
 <body class="hold-transition skin-blue sidebar-mini">
 	<section class="content-header">
 		<h1 style="color: red">
-			Category <small>List</small>
+			Photo <small>List of ${product.productName }</small>
 		</h1>
 		<ol class="breadcrumb">
-			<li><a href="${pageContext.request.contextPath }/admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
-			<li class="active">Category List</li>
+			<li><a
+				href="${pageContext.request.contextPath }/admin/dashboard"><i
+					class="fa fa-dashboard"></i> Home</a></li>
+			<li class="active">Photo List</li>
 		</ol>
 	</section>
 
@@ -58,35 +60,31 @@
 
 				<div class="box">
 					<div class="box-body">
-						<table id="categoryList" class="table table-bordered table-hover">
+						<table id="photoTable" class="table table-bordered table-hover">
 							<thead>
 								<tr>
 									<th>Id</th>
-									<th>Name</th>
+									<th>Photo</th>
 									<th>Status</th>
+									<th>Main</th>
 									<th>Action</th>
 								</tr>
 							</thead>
 
 							<tbody>
-								<c:forEach var="c" items="${categories }">
+								<c:forEach var="photo" items="${product.photos }">
 									<tr>
-										<td>${c.categoryId }</td>
-										<td>${c.name}</td>
-										<td>${c.status ? 'Show' : 'Hide' }</td>
+										<td>${photo.photoId }</td>
+										<td><img
+											src="${pageContext.request.contextPath }/uploads/images/${photo.photoName }"
+											width="120" /></td>
+										<td>${photo.status ? "Show" : "Hide"}</td>
+										<td>${photo.main ? "Main" : ""}</td>
 										<td><a
-											href="${pageContext.request.contextPath }/admin/category/edit/${c.categoryId}">
+											href="${pageContext.request.contextPath }/admin/photo/edit/${product.productId}">
 												Edit</a> | <a
-											href="${pageContext.request.contextPath }/admin/category/delete/${c.categoryId}"
-											onclick="return confirm('Are you sure to delete?')">
-												Delete</a> | <a
-											href="${pageContext.request.contextPath }/admin/category/subcategories/${c.categoryId}">
-												Sub Categories</a>
-											| <a
-											href="${pageContext.request.contextPath }/admin/category/addsubcategories/${c.categoryId}">
-												Add Sub Categories</a>
-										
-										</td>
+											href="${pageContext.request.contextPath }/admin/photo/delete/${photo.photoId }/${photo.product.productId}">
+												Delete Photos</a></td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -95,8 +93,9 @@
 							<tfoot>
 								<tr>
 									<th>Id</th>
-									<th>Name</th>
+									<th>Photo</th>
 									<th>Status</th>
+									<th>Main</th>
 									<th>Action</th>
 								</tr>
 							</tfoot>
@@ -139,18 +138,32 @@
 	<!-- Add the jQuery library -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+	<!-- Add the DataTables library -->
+	<script
+		src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+
+	<!-- Add the DataTables CSS -->
+	<link rel="stylesheet"
+		href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
+
 	<!-- Page script -->
 	<script>
-		$(function() {
-			$('#categoryList').DataTable({
+		$(document).ready(function() {
+			$('#photoTable').DataTable({
 				'paging' : true,
 				'lengthChange' : false,
 				'searching' : false,
 				'ordering' : true,
 				'info' : true,
-				'autoWidth' : false
-			})
-		})
+				'autoWidth' : false,
+				'language' : {
+					'paginate' : {
+						'previous' : 'Previous',
+						'next' : 'Next'
+					}
+				}
+			});
+		});
 	</script>
 </body>
 </html>

@@ -7,7 +7,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Admin Mobile Shop | Category</title>
+<title>Admin Mobile Shop | Product</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
@@ -39,11 +39,11 @@
 <body class="hold-transition skin-blue sidebar-mini">
 	<section class="content-header">
 		<h1 style="color: red">
-			Category <small>List</small>
+			Product <small>List</small>
 		</h1>
 		<ol class="breadcrumb">
 			<li><a href="${pageContext.request.contextPath }/admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
-			<li class="active">Category List</li>
+			<li class="active">Product List</li>
 		</ol>
 	</section>
 
@@ -63,29 +63,37 @@
 								<tr>
 									<th>Id</th>
 									<th>Name</th>
+									<th>Price</th>
+									<th>Category</th>
 									<th>Status</th>
+									<th>Featured</th>
 									<th>Action</th>
 								</tr>
 							</thead>
 
 							<tbody>
-								<c:forEach var="c" items="${categories }">
+								<c:forEach var="product" items="${products }">
 									<tr>
-										<td>${c.categoryId }</td>
-										<td>${c.name}</td>
-										<td>${c.status ? 'Show' : 'Hide' }</td>
+										<td>${product.productId }</td>
+										<td>${product.productName}</td>
+										<td>${product.price}</td>
+										<td>${product.category.name}</td>
+										<td>${product.featured ? "featured" : ""}</td>
+										<td>${product.status ? 'Show' : 'Hide' }</td>
 										<td><a
-											href="${pageContext.request.contextPath }/admin/category/edit/${c.categoryId}">
+											href="${pageContext.request.contextPath }/admin/product/edit/${product.productId}">
 												Edit</a> | <a
-											href="${pageContext.request.contextPath }/admin/category/delete/${c.categoryId}"
+											href="${pageContext.request.contextPath }/admin/product/delete/${product.productId}"
 											onclick="return confirm('Are you sure to delete?')">
-												Delete</a> | <a
-											href="${pageContext.request.contextPath }/admin/category/subcategories/${c.categoryId}">
-												Sub Categories</a>
+												Delete</a> 
+											| 
+											<a
+											href="${pageContext.request.contextPath }/admin/photo/product/${product.productId}">
+												Photos</a>
 											| <a
-											href="${pageContext.request.contextPath }/admin/category/addsubcategories/${c.categoryId}">
-												Add Sub Categories</a>
-										
+											href="${pageContext.request.contextPath }/admin/photo/add/${product.productId}">
+												Add Photos</a>
+											
 										</td>
 									</tr>
 								</c:forEach>
@@ -96,7 +104,10 @@
 								<tr>
 									<th>Id</th>
 									<th>Name</th>
+									<th>Price</th>
+									<th>Category</th>
 									<th>Status</th>
+									<th>Featured</th>
 									<th>Action</th>
 								</tr>
 							</tfoot>
