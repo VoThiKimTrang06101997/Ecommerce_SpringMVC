@@ -2,6 +2,18 @@
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
+<jsp:useBean id="pagedListHolder" scope="request"
+	class="org.springframework.beans.support.PagedListHolder" />
+
+<spring:url value="/product/category/${category.categoryId}"
+	var="pageLink">
+	<spring:param name="p" value="~" />
+</spring:url>
+
+
 <div class="span9">
 	<ul class="breadcrumb">
 		<li><a href="${pageContext.request.contextPath}/home">Home</a> <span
@@ -24,9 +36,9 @@
 	<form class="form-horizontal span6">
 		<div class="control-group">
 			<label class="control-label alignL">Sort By </label> <select>
-				<option>Priduct name A - Z</option>
-				<option>Priduct name Z - A</option>
-				<option>Priduct Stoke</option>
+				<option>Product name A - Z</option>
+				<option>Product name Z - A</option>
+				<option>Product Stoke</option>
 				<option>Price Lowest first</option>
 			</select>
 		</div>
@@ -40,174 +52,42 @@
 	<br class="clr" />
 	<div class="tab-content">
 		<div class="tab-pane" id="listView">
-			<div class="row">
-				<div class="span2">
-					<img src="themes/images/products/3.jpg" alt="" />
-				</div>
-				<div class="span4">
-					<h3>New | Available</h3>
-					<hr class="soft" />
-					<h5>Product Name</h5>
-					<p>Nowadays the lingerie industry is one of the most successful
-						business spheres.We always stay in touch with the latest fashion
-						tendencies - that is why our goods are so popular..</p>
-					<a class="btn btn-small pull-right" href="product_details.html">View
-						Details</a> <br class="clr" />
-				</div>
-				<div class="span3 alignR">
-					<form class="form-horizontal qtyFrm">
-						<h3>$140.00</h3>
-						<label class="checkbox"> <input type="checkbox">
-							Adds product to compair
-						</label><br /> <a href="product_details.html"
-							class="btn btn-large btn-primary"> Add to <i
-							class=" icon-shopping-cart"></i></a> <a href="product_details.html"
-							class="btn btn-large"><i class="icon-zoom-in"></i></a>
+			<c:forEach var="product" items="${pagedListHolder.pageList }">
+				<c:set var="photo"
+					value="${product.getPhotos().stream().filter(p -> p.isStatus() && p.isMain()).findFirst().orElse(null)}"></c:set>
 
-					</form>
-				</div>
-			</div>
-			<hr class="soft" />
-			<div class="row">
-				<div class="span2">
-					<img src="themes/images/products/1.jpg" alt="" />
-				</div>
-				<div class="span4">
-					<h3>New | Available</h3>
-					<hr class="soft" />
-					<h5>Product Name</h5>
-					<p>Nowadays the lingerie industry is one of the most successful
-						business spheres.We always stay in touch with the latest fashion
-						tendencies - that is why our goods are so popular..</p>
-					<a class="btn btn-small pull-right" href="product_details.html">View
-						Details</a> <br class="clr" />
-				</div>
-				<div class="span3 alignR">
-					<form class="form-horizontal qtyFrm">
-						<h3>$140.00</h3>
-						<label class="checkbox"> <input type="checkbox">
-							Adds product to compair
-						</label><br /> <a href="product_details.html"
-							class="btn btn-large btn-primary"> Add to <i
-							class=" icon-shopping-cart"></i></a> <a href="product_details.html"
-							class="btn btn-large"><i class="icon-zoom-in"></i></a>
 
-					</form>
+				<div class="row">
+					<div class="span2">
+						<img
+							src="${pageContext.request.contextPath}/uploads/images/${product.photos[0].photoName}"
+							alt="" />
+					</div>
+					<div class="span4">
+						<h3>New | Available</h3>
+						<hr class="soft" />
+						<h5>${product.productName}</h5>
+						<p>${product.description}</p>
+						<a class="btn btn-small pull-right"
+							href="${pageContext.request.contextPath}/product/details/${product.productId}">View
+							Details</a> <br class="clr" />
+					</div>
+					<div class="span3 alignR">
+						<form class="form-horizontal qtyFrm">
+							<h3>$ ${product.price}</h3>
+							<label class="checkbox"> <input type="checkbox">
+								Adds product to compare
+							</label><br /> <a href="product_details.html"
+								class="btn btn-large btn-primary"> Add to <i
+								class=" icon-shopping-cart"></i></a> <a
+								href="${pageContext.request.contextPath}/product/details/${product.productId}"
+								class="btn btn-large"><i class="icon-zoom-in"></i></a>
+						</form>
+					</div>
 				</div>
-			</div>
-			<hr class="soft" />
-			<div class="row">
-				<div class="span2">
-					<img src="themes/images/products/3.jpg" alt="" />
-				</div>
-				<div class="span4">
-					<h3>New | Available</h3>
-					<hr class="soft" />
-					<h5>Product Name</h5>
-					<p>Nowadays the lingerie industry is one of the most successful
-						business spheres.We always stay in touch with the latest fashion
-						tendencies - that is why our goods are so popular..</p>
-					<a class="btn btn-small pull-right" href="product_details.html">View
-						Details</a> <br class="clr" />
-				</div>
-				<div class="span3 alignR">
-					<form class="form-horizontal qtyFrm">
-						<h3>$140.00</h3>
-						<label class="checkbox"> <input type="checkbox">
-							Adds product to compair
-						</label><br /> <a href="product_details.html"
-							class="btn btn-large btn-primary"> Add to <i
-							class=" icon-shopping-cart"></i></a> <a href="product_details.html"
-							class="btn btn-large"><i class="icon-zoom-in"></i></a>
+				<hr class="soft" />
+			</c:forEach>
 
-					</form>
-				</div>
-			</div>
-			<hr class="soft" />
-			<div class="row">
-				<div class="span2">
-					<img src="themes/images/products/3.jpg" alt="" />
-				</div>
-				<div class="span4">
-					<h3>New | Available</h3>
-					<hr class="soft" />
-					<h5>Product Name</h5>
-					<p>Nowadays the lingerie industry is one of the most successful
-						business spheres.We always stay in touch with the latest fashion
-						tendencies - that is why our goods are so popular..</p>
-					<a class="btn btn-small pull-right" href="product_details.html">View
-						Details</a> <br class="clr" />
-				</div>
-				<div class="span3 alignR">
-					<form class="form-horizontal qtyFrm">
-						<h3>$140.00</h3>
-						<label class="checkbox"> <input type="checkbox">
-							Adds product to compair
-						</label><br /> <a href="product_details.html"
-							class="btn btn-large btn-primary"> Add to <i
-							class=" icon-shopping-cart"></i></a> <a href="product_details.html"
-							class="btn btn-large"><i class="icon-zoom-in"></i></a>
-
-					</form>
-				</div>
-			</div>
-
-			<hr class="soft" />
-			<div class="row">
-				<div class="span2">
-					<img src="themes/images/products/3.jpg" alt="" />
-				</div>
-				<div class="span4">
-					<h3>New | Available</h3>
-					<hr class="soft" />
-					<h5>Product Name</h5>
-					<p>Nowadays the lingerie industry is one of the most successful
-						business spheres.We always stay in touch with the latest fashion
-						tendencies - that is why our goods are so popular..</p>
-					<a class="btn btn-small pull-right" href="product_details.html">View
-						Details</a> <br class="clr" />
-				</div>
-				<div class="span3 alignR">
-					<form class="form-horizontal qtyFrm">
-						<h3>$140.00</h3>
-						<label class="checkbox"> <input type="checkbox">
-							Adds product to compair
-						</label><br /> <a href="product_details.html"
-							class="btn btn-large btn-primary"> Add to <i
-							class=" icon-shopping-cart"></i></a> <a href="product_details.html"
-							class="btn btn-large"><i class="icon-zoom-in"></i></a>
-					</form>
-				</div>
-			</div>
-			<hr class="soft" />
-			<div class="row">
-				<div class="span2">
-					<img src="themes/images/products/3.jpg" alt="" />
-				</div>
-				<div class="span4">
-					<h3>New | Available</h3>
-					<hr class="soft" />
-					<h5>Product Name</h5>
-					<p>Nowadays the lingerie industry is one of the most successful
-						business spheres.We always stay in touch with the latest fashion
-						tendencies - that is why our goods are so popular..</p>
-					<a class="btn btn-small pull-right" href="product_details.html">View
-						Details</a> <br class="clr" />
-				</div>
-				<div class="span3 alignR">
-					<form class="form-horizontal qtyFrm">
-						<h3>$140.00</h3>
-						<label class="checkbox"> <input type="checkbox">
-							Adds product to compair
-						</label><br /> <a href="product_details.html"
-							class="btn btn-large btn-primary"> Add to <i
-							class=" icon-shopping-cart"></i></a> <a href="product_details.html"
-							class="btn btn-large"><i class="icon-zoom-in"></i></a>
-
-					</form>
-				</div>
-			</div>
-			<hr class="soft" />
 		</div>
 
 		<div class="tab-pane active" id="blockView">
@@ -215,7 +95,7 @@
 				<c:set var="photo"
 					value="${product.getPhotos().stream().filter(p -> p.isStatus() && p.isMain()).findFirst().orElse(null)}"></c:set>
 
-				<c:forEach var="product" items="${category.products}">
+				<c:forEach var="product" items="${pagedListHolder.pageList}">
 					<li class="span3">
 						<div class="thumbnail">
 							<a
@@ -247,19 +127,50 @@
 	</div>
 </div>
 
-<a href="compair.html" class="btn btn-large pull-right">Compair
+<a href="compair.html" class="btn btn-large pull-right">Compare
 	Product</a>
+
 <div class="pagination">
-	<ul>
-		<li><a href="#">&lsaquo;</a></li>
-		<li><a href="#">1</a></li>
-		<li><a href="#">2</a></li>
-		<li><a href="#">3</a></li>
-		<li><a href="#">4</a></li>
-		<li><a href="#">...</a></li>
-		<li><a href="#">&rsaquo;</a></li>
-	</ul>
+	<spring:eval var="pageCount"
+		expression="pagedListHolder.getPageCount()" />
+	<c:choose>
+		<c:when test="${pageCount <= 2}">
+			<c:forEach var="pageNumber" begin="1" end="${pageCount}">
+				<spring:url value="/product/category/${category.categoryId}"
+					var="pageLink">
+					<spring:param name="p" value="${pageNumber}" />
+				</spring:url>
+				<c:if test="${pageNumber == pagedListHolder.page + 1}">
+					<span class="current-page">${pageNumber}</span>
+				</c:if>
+				<c:if test="${pageNumber != pagedListHolder.page + 1}">
+					<a href="${pageLink}">${pageNumber}</a>
+				</c:if>
+			</c:forEach>
+		</c:when>
+		<c:otherwise>
+			<c:set var="currentPage" value="${pagedListHolder.page + 1}" />
+			<c:if test="${currentPage == 1}">
+				<span class="current-page">${currentPage}</span>
+				<a href="/product/category/${category.categoryId}?p=2">2</a>
+			</c:if>
+			<c:if test="${currentPage == pageCount}">
+				<a
+					href="/product/category/${category.categoryId}?p=${currentPage - 1}">${currentPage - 1}</a>
+				<span class="current-page">${currentPage}</span>
+			</c:if>
+			<c:if test="${currentPage != 1 && currentPage != pageCount}">
+				<a
+					href="/product/category/${category.categoryId}?p=${currentPage - 1}">${currentPage - 1}</a>
+				<span class="current-page">${currentPage}</span>
+				<a
+					href="/product/category/${category.categoryId}?p=${currentPage + 1}">${currentPage + 1}</a>
+			</c:if>
+		</c:otherwise>
+	</c:choose>
 </div>
+
+
 <br class="clr" />
 </div>
 </div>
