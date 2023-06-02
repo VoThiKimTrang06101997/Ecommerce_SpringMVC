@@ -23,7 +23,8 @@ public class TilesConfiguration extends WebMvcConfigurerAdapter {
 				"/WEB-INF/tiles/tiles_admin.xml",
 				"/WEB-INF/tiles/tiles_admin_category.xml",
 				"/WEB-INF/tiles/tiles_admin_product.xml",
-				"/WEB-INF/tiles/tiles_admin_photo.xml"});
+				"/WEB-INF/tiles/tiles_admin_photo.xml",
+				"/WEB-INF/tiles/tiles_product.xml"});
 		return configurer;
 	}
 }

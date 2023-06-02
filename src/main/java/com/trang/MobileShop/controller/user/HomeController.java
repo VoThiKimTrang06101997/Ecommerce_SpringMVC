@@ -19,6 +19,8 @@ public class HomeController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(ModelMap modelMap) {
+		modelMap.put("isHome", true);
+		
 		List<Product> latestProducts = productService.latestProducts(true, 6);
 		List<Product> featuredProducts = productService.featuredProducts(true, true, 6);
 		modelMap.addAttribute("latestProducts", latestProducts);

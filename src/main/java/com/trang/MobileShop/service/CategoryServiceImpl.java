@@ -58,4 +58,10 @@ public class CategoryServiceImpl implements CategoryService {
 		return categoryRepository.findParentCategoriesWithStatus(status);
 	}
 
+	@Override
+	public Category find(int categoryId) {
+		// return categoryRepository.findById(categoryId).get();
+		return categoryRepository.findById(categoryId).orElse(null);
+	}
+
 }

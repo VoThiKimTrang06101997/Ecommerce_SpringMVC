@@ -55,11 +55,26 @@ public class Category {
 		return subcategories;
 	}
 
-	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private Set<Product> products = new HashSet<>();
+//	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//	private Set<Product> products = new HashSet<>();
 
-	public Set<Product> getProducts() {
+	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Product> products = new ArrayList<>();
+
+//	public Set<Product> getProducts() {
+//		return products;
+//	}
+//	
+//	public void setProducts(List<Product> products) {
+//		this.products = new HashSet<>(products);
+//	}
+
+	public List<Product> getProducts() {
 		return products;
+	}
+
+	public void setProducts(List<Product> products) {
+		this.products = products;
 	}
 
 	public String getIndentedName() {

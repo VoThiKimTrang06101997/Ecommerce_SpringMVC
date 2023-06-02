@@ -1,6 +1,7 @@
 package com.trang.MobileShop.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.trang.MobileShop.model.Product;
 import com.trang.MobileShop.repository.ProductRepository;
@@ -44,6 +45,27 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<Product> featuredProducts(boolean status, boolean featured, int n) {
 		return productRepository.featuredProduct(status, featured, n);
+	}
+
+	@Override
+	public Product find(int productId) {
+		Optional<Product> optionalProduct = productRepository.findById(productId);
+		return optionalProduct.orElse(null);
+	}
+
+	@Override
+	public List<Product> relatedProduct(boolean status, int categoryId, int productId, int n) {
+		return productRepository.relatedProduct(status, categoryId, productId, n);
+	}
+
+//	@Override
+//	public List<Product> getProductsByCategoryId(int categoryId) {
+//		return productRepository.findByCategoryCategoryId(categoryId);
+//
+//	}
+
+	public List<Product> getProductsByCategoryId(int categoryId) {
+		return productRepository.findByCategoryCategoryId(categoryId);
 	}
 
 }

@@ -18,4 +18,10 @@
 		<body-content>empty</body-content>
 	</tag>
 
+	<tag>
+		<name>Carousel</name>
+		<tag-class>com.trang.MobileShop.tags.CarouselTag</tag-class>
+		<body-content>empty</body-content>
+	</tag>
+
 </taglib>

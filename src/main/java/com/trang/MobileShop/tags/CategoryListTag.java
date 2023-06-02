@@ -43,8 +43,9 @@ public class CategoryListTag extends RequestContextAwareTag {
 					if (!category.getSubcategories().isEmpty()) {
 						writer.write("<ul style=\"display:none\">");
 						for (Category subCategory : category.getSubcategories()) {
-							writer.write("<li><a href=\"products.html\"><i class=\"icon-chevron-right\"></i>"
-									+ subCategory.getName() + "</a></li>");
+							writer.write("<li><a href='" + pageContext.getServletContext().getContextPath()
+									+ "/product/category/" + subCategory.getCategoryId()
+									+ "'><i class=\"icon-chevron-right\"></i>" + subCategory.getName() + "</a></li>");
 						}
 						writer.write("</ul>");
 					}

@@ -16,8 +16,12 @@ public interface CategoryService {
 	public void delete(int categoryId);
 
 	public Category findById(int categoryId);
+	
+	public Category find(int categoryId);
 
 	public List<Category> getSubcategories(int categoryId);
 
 	public List<Category> findParentCategoriesWithStatus(@Param("status") boolean status);
+	
+
 }

@@ -19,4 +19,11 @@ public interface ProductRepository extends CrudRepository<Product, Integer>, Jpa
 	public List<Product> featuredProduct(@Param("status") boolean status, @Param("featured") boolean featured,
 			@Param("n") int n);
 
+	@Query(value = "SELECT * FROM product WHERE status = :status and category_id = :category_id and product_id != :product_id LIMIT :n", nativeQuery = true)
+	public List<Product> relatedProduct(@Param("status") boolean status, @Param("category_id") int categoryId,
+			@Param("product_id") int productId, @Param("n") int n);
+
+	// public List<Product> findByCategoryCategoryId(int categoryId);
+
+	public List<Product> findByCategoryCategoryId(int categoryId);
 }

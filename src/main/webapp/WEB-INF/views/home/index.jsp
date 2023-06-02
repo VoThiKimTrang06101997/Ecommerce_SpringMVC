@@ -26,13 +26,13 @@
 
 								<li class="span3">
 									<div class="thumbnail">
-										<i class="tag"></i> <a href="product_details.html"><img
+										<i class="tag"></i> <a href="${pageContext.request.contextPath }/product/details/${product.productId}"><img
 											src="${pageContext.request.contextPath }/uploads/images/${photo.photoName}"
 											alt=""></a>
 										<div class="caption">
 											<h5>${product.productName }</h5>
 											<h4>
-												<a class="btn" href="product_details.html">VIEW</a> <span
+												<a class="btn" href="${pageContext.request.contextPath }/product/details/${product.productId}">VIEW</a> <span
 													class="pull-right">$${product.price }</span>
 											</h4>
 										</div>
@@ -57,7 +57,7 @@
 			</c:set>
 			<li class="span3">
 				<div class="thumbnail">
-					<a href="product_details.html"><img
+					<a href="${pageContext.request.contextPath }/product/details/${product.productId}"><img
 						src="${pageContext.request.contextPath }/uploads/images/${photo.photoName}"
 						alt="" /></a>
 					<div class="caption">
@@ -65,7 +65,7 @@
 						<p>${product.description }</p>
 
 						<h4 style="text-align: center">
-							<a class="btn" href="product_details.html"> <i
+							<a class="btn" href="${pageContext.request.contextPath }/product/details/${product.productId}"> <i
 								class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i
 								class="icon-shopping-cart"></i></a> <a class="btn btn-primary"
 								href="#">$${product.price }</a>
